@@ -1,16 +1,22 @@
 <?php
     session_start();
-    if(!isset($_SESSION["flag_loginerror"])){
+    if(!isset($_SESSION["flag_empty_login_infomation"])){ 
+        $_SESSION["flag_empty_login_infomation"]=0;
         $_SESSION["flag_loginerror"]=0;
     }
-    if($_SESSION["flag_loginerror"]==1){
-        echo <<<EOM
-        <script type="text/javascript">
-        alert("間違っています")
-        </script>
-        EOM;    
+    if($_SESSION["flag_empty_login_infomation"]==1){
+        echo <<< EOM
+        <p>IDとパスワード両方を入力してください</p>
+        EOM;
+        $_SESSION["flag_empty_login_infomation"]=0;
+    }else if($_SESSION["flag_loginerror"]==1){
+        echo <<< EOM
+        <p>入力したID、またはパスワードが間違っています</p>
+        EOM;
+        echo $_SESSION["user_id"];
+        echo $_SESSION["password"];
+        $_SESSION["flag_loginerror"]=0;
     }
-    $_SESSION["flag_loginerror"] = null;
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -21,10 +27,14 @@
 
     <body>
         <p>IDを入力してください</p>
-        <form action="../function/login.php" method="post">
-            <input type="text" name="user_ID">
+        <form action="../function/login_check.php" method="post">
+            <p>ユーザID</p>
+            <input type="text" name="user_id">
+            <p>パスワード</p>
+            <input type="text" name="password"><br><br>
+            
             <input type="submit" value="ログイン">    
         </form>
-
+        <a href="./register_user_infomation.php">会員登録はこちらから</a>
     </body>
 </html>
