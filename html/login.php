@@ -13,8 +13,6 @@
         echo <<< EOM
         <p>入力したID、またはパスワードが間違っています</p>
         EOM;
-        echo $_SESSION["user_id"];
-        echo $_SESSION["password"];
         $_SESSION["flag_loginerror"]=0;
     }
 ?>
@@ -31,7 +29,7 @@
             <p>ユーザID</p>
             <input type="text" name="user_id">
             <p>パスワード</p>
-            <input type="text" name="password"><br><br>
+            <input type="password" name="password"><br><br>
             
             <input type="submit" value="ログイン">    
         </form>

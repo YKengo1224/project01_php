@@ -5,8 +5,7 @@
         $user_id = $_POST["user_id"];
         $password = $_POST["password"];
         $search_database = new search_user_infomaiton();
-        $_SESSION["user_id"] = $user_id;
-        $_SESSION["password"] = $password;
+
         if($search_database->LoginCheck($user_id,$password)){      //入力されたIDとパスワードの組み合わせをデータベースから検索
             $_SESSION["user_id"] = $user_id;
             $_SESSION["password"] = $password;

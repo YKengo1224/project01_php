@@ -43,7 +43,7 @@ class  Connect_DataBase{
     }
 
     public function insert($culumns,$tables,$values){     //INSERT文を実行
-        $sql = ('INSERT INTO '.$tables.'('.$culumns.')'.'VALUES'.$values);
+        $sql = ('INSERT INTO '.$tables.' ('.$culumns.')'.' VALUES ('.$values.');');
         $this->execute($sql);
         return;
     }
